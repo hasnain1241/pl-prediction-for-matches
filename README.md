@@ -3,7 +3,8 @@
 A machine learning pipeline that predicts English Premier League results from historical data, plus a
 small static website that shows its predictions and how each model scored.
 
-This is a statistics project, not betting advice.
+This was built purely for practice, mainly to see how XGBoost works on a real problem. It is a
+statistics project, not betting advice.
 
 ## What it does
 
