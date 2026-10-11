@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Premier League match predictions</title>
+  <meta name="description" content="Model probabilities for the next Premier League gameweek, shown next to the bookmaker's.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+  <main class="wrap">
+    <h1>Next gameweek predictions</h1>
+    <p class="lede">Home win, draw and away win probabilities for each fixture, with the bookmaker's
+      implied probabilities underneath so you can see where the two disagree.</p>
+    <p class="small" data-trained-through></p>
+
+    <div class="notice">
+      <p><strong>No model beat the bookmaker.</strong> These numbers come from a statistics project and
+        are not betting advice. The model uses no injury or lineup data and almost never makes a draw its
+        top pick. <a href="about.html">Read the limitations</a>.</p>
+    </div>
+
+    <div class="legend" aria-hidden="true">
+      <span><i class="swatch" style="background:var(--home)"></i>Home win</span>
+      <span><i class="swatch" style="background:var(--draw)"></i>Draw</span>
+      <span><i class="swatch" style="background:var(--away)"></i>Away win</span>
+    </div>
+
+    <div id="fixtures"></div>
+  </main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="js/common.js"></script>
+  <script src="js/predictions.js"></script>
+</body>
+</html>

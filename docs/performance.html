@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Model performance · Premier League match predictions</title>
+  <meta name="description" content="How each model scored against the bookmaker's closing odds.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+  <main class="wrap">
+    <h1>Model performance</h1>
+    <p class="lede">Every model was scored on the same matches as the bookmaker's closing odds.
+      Lower log loss is better. <strong>No model beat the bookmaker.</strong></p>
+
+    <div class="tiles" id="tiles"></div>
+
+    <h2>Holdout log loss by model</h2>
+    <p class="small">Each dot is one model on one feature set, scored on the 2024/25 and 2025/26 holdout
+      seasons. The vertical line is the bookmaker. Dots to the right of it are worse than the bookmaker.</p>
+    <div class="panel">
+      <div class="legend" id="chart-legend"></div>
+      <div id="chart"></div>
+      <div class="tooltip" id="tooltip"></div>
+    </div>
+    <p class="small" id="chart-note"></p>
+
+    <h2>All models</h2>
+    <p class="small">CV is walk-forward validation on the development seasons. Holdout is 2024/25 and
+      2025/26. Live is the current season so far, which is a small sample. A dash means the model makes
+      hard picks without probabilities, so log loss, RPS and Brier score do not apply. Click a column
+      heading to sort.</p>
+    <div class="controls">
+      <label for="filter">Feature set</label>
+      <select id="filter"></select>
+      <span class="small">The bookmaker row stays visible as the benchmark.</span>
+    </div>
+    <div class="table-scroll"><table id="models"></table></div>
+
+    <h2>Goals models</h2>
+    <p class="small">Error on predicted goals over the holdout seasons. GD is goal difference. Sign accuracy
+      is how often the predicted goal difference pointed to the right result.</p>
+    <div class="table-scroll"><table id="goals"></table></div>
+
+    <h2>Expected goals (xG) experiment</h2>
+    <p class="small">The same models with and without xG features, trained on 2014/15 onward only.</p>
+    <div class="table-scroll"><table id="xg"></table></div>
+  </main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="js/common.js"></script>
+  <script src="js/performance.js"></script>
+</body>
+</html>

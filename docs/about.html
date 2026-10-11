@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About · Premier League match predictions</title>
+  <meta name="description" content="What the project does, how it was validated, and its limitations.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+  <main class="wrap prose">
+    <h1>About this project</h1>
+    <p class="lede">A machine learning pipeline that predicts English Premier League results from
+      historical data, and an honest account of how well it does.</p>
+    <p class="small" data-trained-through></p>
+
+    <div class="notice">
+      <p><strong>No model beat the bookmaker.</strong> On the holdout seasons the best model scored a log
+        loss of 0.9959. The bookmaker's closing odds scored 0.9893, and lower is better. Model accuracy is
+        about 50 to 52 percent.</p>
+      <p><strong>This is a statistics project, not betting advice.</strong></p>
+    </div>
+
+    <h2>What it does</h2>
+    <p>The pipeline downloads match results going back to 2000/01 from football-data.co.uk and builds
+      features for each match using only information available before kick-off: recent form, shots,
+      rest days and Elo ratings. One version of the features also includes the bookmaker's odds.</p>
+    <p>It then trains several models and compares them:</p>
+    <ul>
+      <li>Classifiers that give home win, draw and away win probabilities directly: logistic regression,
+        random forest, XGBoost and LightGBM, with calibrated and ensemble versions.</li>
+      <li>Goals models (a Poisson GLM and XGBoost) that predict each side's expected goals. A
+        Dixon-Coles scoreline grid turns those into result probabilities, the most likely scoreline,
+        and the chances of over 2.5 goals and both teams scoring.</li>
+      <li>Baselines: always pick the home team, the historical class frequencies, and the bookmaker's
+        closing odds.</li>
+    </ul>
+    <p>Each model is trained on three feature sets: A uses form only, B adds Elo ratings, and C adds
+      the market odds. The site only displays the files the pipeline writes. Nothing is computed in
+      your browser beyond formatting.</p>
+
+    <h2>How validation works</h2>
+    <p>Football results are a time series, so every split is in date order and nothing is shuffled.
+      A model is only ever scored on matches played after the ones it was trained on.</p>
+    <ul>
+      <li><strong>Development seasons.</strong> Models are chosen by walk-forward validation: train on
+        every season up to a point, score the next season, then move forward one season and repeat.</li>
+      <li><strong>Holdout.</strong> The 2024/25 and 2025/26 seasons, 760 matches, are kept aside and
+        used once for the final numbers.</li>
+      <li><strong>Live.</strong> Completed matches of the current season are reported separately.
+        That sample is too small to rank models.</li>
+    </ul>
+    <p>Automated checks in the pipeline confirm that no feature uses information from the match it
+      describes or from later matches.</p>
+
+    <h2>Limitations</h2>
+    <ul>
+      <li><strong>No model beat the bookmaker.</strong> Best model holdout log loss is 0.9959 against
+        0.9893 for closing odds. Closing odds already reflect team news and the money of well-informed
+        bettors, which this pipeline never sees.</li>
+      <li><strong>Accuracy is about 50 to 52 percent</strong> on the holdout seasons.</li>
+      <li><strong>Draws are almost never predicted.</strong> About a quarter of matches are drawn, but
+        a draw is rarely the single most likely outcome, so the models and the bookmaker almost never
+        pick one.</li>
+      <li><strong>No injury or lineup data is used.</strong> Suspensions, transfers, managerial
+        changes and cup or European fixtures are also invisible to the models.</li>
+      <li><strong>The best model leans on the market.</strong> With odds as an input, a model mostly
+        learns to copy the bookmaker. Feature sets A and B show what form and Elo do on their own.</li>
+      <li><strong>Promoted teams are uncertain.</strong> They have no recent top-flight history, so
+        their early-season numbers are borrowed from the previous season's bottom three.</li>
+      <li><strong>Small differences are noise.</strong> The holdout is two seasons. Gaps of a few
+        thousandths in log loss between models do not mean one is better.</li>
+    </ul>
+
+    <h2>Data sources</h2>
+    <ul>
+      <li><a href="https://www.football-data.co.uk/">football-data.co.uk</a> for results, match
+        statistics and bookmaker odds.</li>
+      <li><a href="https://understat.com/">Understat</a> for expected goals.</li>
+      <li>The <a href="https://github.com/vaastav/Fantasy-Premier-League">vaastav Fantasy-Premier-League
+        archive</a>.</li>
+    </ul>
+  </main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="js/common.js"></script>
+  <script>renderChrome("about.html");</script>
+</body>
+</html>
