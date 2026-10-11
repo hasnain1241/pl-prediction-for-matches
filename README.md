@@ -37,7 +37,6 @@ The full table is in `model_comparison.csv` and on the website's Model performan
 | `*.csv` in the root | Outputs of the latest run |
 | `docs/` | The static website served by GitHub Pages |
 | `docs/data/` | Copies of the CSVs that the website loads, plus `meta.json` |
-| `tools/fetch_fixtures.py` | Downloads the remaining-season fixture list for the website |
 
 ## Run the notebook on Kaggle
 
@@ -56,9 +55,7 @@ site only displays the CSV files.
 2. Copy the four new CSVs into `docs/data/` (and into the repository root if you keep copies there).
 3. Set `trained_through` in `docs/data/meta.json` to the date of the latest result in the data. The
    notebook prints it as "Latest result in the data".
-4. Run `python3 tools/fetch_fixtures.py` to update the list of remaining fixtures
-   (`docs/data/fixtures_remaining.csv`). It needs only the Python standard library.
-5. Commit and push. GitHub Pages redeploys within a minute or two.
+4. Commit and push. GitHub Pages redeploys within a minute or two.
 
 ```bash
 cp predictions_next_gameweek.csv model_comparison.csv goals_regression_comparison.csv xg_experiment.csv docs/data/
@@ -81,4 +78,7 @@ blocks `fetch` on `file://` pages.
 - [football-data.co.uk](https://www.football-data.co.uk/) for results, match statistics and bookmaker odds
 - [Understat](https://understat.com/) for expected goals
 - The [vaastav Fantasy-Premier-League archive](https://github.com/vaastav/Fantasy-Premier-League)
-- The Fantasy Premier League API for the remaining-season fixture list shown on the website
+
+## Licence
+
+MIT. See [LICENSE](LICENSE).

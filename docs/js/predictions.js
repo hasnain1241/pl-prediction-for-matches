@@ -63,29 +63,4 @@ loadCSV("predictions_next_gameweek.csv").then(rows => {
   el.innerHTML = [...days.keys()].sort().map(date =>
     `<h2 class="day">${esc(formatDate(date))}</h2><div class="fixtures">${days.get(date).map(card).join("")}</div>`
   ).join("");
-  return new Set(rows.map(r => r.HomeTeam + "|" + r.AwayTeam));
-}).catch(err => { showError(document.getElementById("fixtures"), err); return new Set(); })
-  .then(predicted => loadCSV("fixtures_remaining.csv").then(rows => renderSchedule(rows, predicted || new Set())))
-  .catch(err => showError(document.getElementById("schedule"), err));
-
-// Remaining fixtures that have no prediction yet, grouped by gameweek.
-function renderSchedule(rows, predicted) {
-  const el = document.getElementById("schedule");
-  const rest = rows.filter(r => !predicted.has(r.HomeTeam + "|" + r.AwayTeam));
-  if (!rest.length) { el.innerHTML = "<p>No further fixtures listed.</p>"; return; }
-  const weeks = new Map();
-  rest.forEach(r => { const k = r.gameweek || "Date to be confirmed"; if (!weeks.has(k)) weeks.set(k, []); weeks.get(k).push(r); });
-  const short = { weekday: "short", day: "numeric", month: "short" };
-  el.innerHTML = [...weeks.entries()].map(([week, list], i) => {
-    const dates = list.map(r => r.Date).filter(Boolean).sort();
-    const span = dates.length ? formatDate(dates[0], short) + (dates[dates.length - 1] !== dates[0] ? " to " + formatDate(dates[dates.length - 1], short) : "") : "";
-    const title = /^\d+$/.test(week) ? `Gameweek ${week}` : week;
-    return `<details class="week"${i === 0 ? " open" : ""}>
-      <summary><span>${esc(title)}</span><span class="small">${esc(span)} · ${list.length} ${list.length === 1 ? "match" : "matches"}</span></summary>
-      <ul>${list.map(r => `<li>
-        <span class="when">${r.Date ? esc(formatDate(r.Date, short)) : "TBC"} <span class="num">${esc(r.kickoff_uk)}</span></span>
-        <span class="team home">${esc(r.HomeTeam)}</span><span class="vs">v</span><span class="team away">${esc(r.AwayTeam)}</span>
-      </li>`).join("")}</ul>
-    </details>`;
-  }).join("");
-}
+}).catch(err => showError(document.getElementById("fixtures"), err));
