@@ -24,7 +24,7 @@ development seasons. The 2024/25 and 2025/26 seasons are a holdout used once for
 - **No model beat the bookmaker.** The best model's holdout log loss is 0.9959. Closing odds score
   0.9893 (lower is better).
 - Holdout accuracy is about 50 to 52 percent.
-- Draws are almost never predicted.
+- Draws are almost never predicted. The latest run predicts none of the remaining 330 matches as a draw.
 - No injury or lineup data is used.
 
 The full table is in `model_comparison.csv` and on the website's Model performance page.
@@ -45,7 +45,7 @@ The full table is in `model_comparison.csv` and on the website's Model performan
 2. In the sidebar, open **Settings** and switch **Internet** on so the notebook can download the season files.
 3. Choose **Run All**.
 4. When it finishes, download the output files from `/kaggle/working`: `predictions_next_gameweek.csv`,
-   `model_comparison.csv`, `goals_regression_comparison.csv` and `xg_experiment.csv`.
+   `predictions_remaining_season.csv`, `model_comparison.csv`, `goals_regression_comparison.csv` and `xg_experiment.csv`.
 
 ## Refresh the website
 
@@ -53,14 +53,15 @@ The site is plain HTML, CSS and JavaScript with no build step. GitHub Pages cann
 site only displays the CSV files.
 
 1. Re-run the notebook.
-2. Copy the four new CSVs into `docs/data/` (and into the repository root if you keep copies there).
+2. Copy the four CSVs the site reads into `docs/data/`: `predictions_remaining_season.csv`,
+   `model_comparison.csv`, `goals_regression_comparison.csv` and `xg_experiment.csv`.
 3. Set `trained_through` in `docs/data/meta.json` to the date of the latest result in the data. The
    notebook prints it as "Latest result in the data".
 4. Commit and push. GitHub Pages redeploys within a minute or two.
 
 ```bash
-cp predictions_next_gameweek.csv model_comparison.csv goals_regression_comparison.csv xg_experiment.csv docs/data/
-git add docs/data *.csv
+cp predictions_remaining_season.csv model_comparison.csv goals_regression_comparison.csv xg_experiment.csv docs/data/
+git add docs/data
 git commit -m "Refresh predictions"
 git push
 ```

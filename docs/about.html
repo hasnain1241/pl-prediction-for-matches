@@ -36,6 +36,12 @@
       <li>Baselines: always pick the home team, the historical class frequencies, and the bookmaker's
         closing odds.</li>
     </ul>
+    <p>The home page shows a plain result and score for every match still to be played. The next
+      gameweek's matches use the best model with bookmaker odds as an input. Every later match uses the
+      best model without odds, because odds only exist a few days before kick-off. All of them are
+      predicted from each club's form as of the latest result, so matches far ahead cannot react to what
+      happens in between. The most likely result is the pick, and the score is the most likely scoreline
+      that agrees with it.</p>
     <p>Each model is trained on three feature sets: A uses form only, B adds Elo ratings, and C adds
       the market odds. The site only displays the files the pipeline writes. Nothing is computed in
       your browser beyond formatting.</p>

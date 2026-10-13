@@ -1,66 +1,64 @@
 renderChrome("index.html");
 
-function probBlock(title, cls, h, d, a) {
-  if (h === null || d === null || a === null) {
-    return `<div class="prob ${cls}"><div class="prob-head"><span>${title}</span></div>
-      <p class="small">Not available for this fixture.</p></div>`;
-  }
-  const label = `${title}: home ${pct(h)}, draw ${pct(d)}, away ${pct(a)}`;
-  return `<div class="prob ${cls}">
-    <div class="prob-head"><span>${title}</span></div>
-    <div class="prob-nums">
-      <span><small>H</small><b>${pct(h)}</b></span>
-      <span><small>D</small><b>${pct(d)}</b></span>
-      <span><small>A</small><b>${pct(a)}</b></span>
-    </div>
-    <div class="bar" role="img" aria-label="${label}">
-      <i class="h" style="flex:${h}"></i><i class="d" style="flex:${d}"></i><i class="a" style="flex:${a}"></i>
-    </div>
-  </div>`;
-}
+const PILL = { "Home win": "h", "Draw": "d", "Away win": "a" };
+const fixturesEl = document.getElementById("fixtures");
+const gwSelect = document.getElementById("gw");
+const teamSelect = document.getElementById("team");
+let rows = [];
 
-// The outcome where model and market differ most, in percentage points.
-function biggestGap(model, market) {
-  const names = ["home win", "draw", "away win"];
-  let best = null;
-  model.forEach((m, i) => {
-    if (m === null || market[i] === null) return;
-    const diff = (m - market[i]) * 100;
-    if (best === null || Math.abs(diff) > Math.abs(best.diff)) best = { diff, name: names[i] };
-  });
-  if (!best) return "";
-  const dir = best.diff > 0 ? "higher" : "lower";
-  return `<p class="gap">Biggest gap: model is <strong>${Math.abs(best.diff).toFixed(0)} points ${dir}</strong>
-    than the market on the ${best.name}.</p>`;
-}
-
-function card(r) {
-  const model = [num(r["P(H)"]), num(r["P(D)"]), num(r["P(A)"])];
-  const market = [num(r["market_P(H)"]), num(r["market_P(D)"]), num(r["market_P(A)"])];
-  return `<article class="card">
-    <div class="teams">
-      <span class="team home">${esc(r.HomeTeam)}<span class="side">Home</span></span>
-      <span class="vs">v</span>
-      <span class="team away">${esc(r.AwayTeam)}<span class="side">Away</span></span>
-    </div>
-    ${probBlock("Model", "model", ...model)}
-    ${probBlock("Market (bookmaker)", "market", ...market)}
-    ${biggestGap(model, market)}
-    <dl class="stats">
-      <div><dt>Expected goals</dt><dd>${fmt(num(r.xG_home), 2)} – ${fmt(num(r.xG_away), 2)}</dd></div>
-      <div><dt>Likeliest score</dt><dd>${esc(r.predicted_scoreline || "–")}</dd></div>
-      <div><dt>Over 2.5 goals</dt><dd>${pct(num(r["P(over 2.5)"]))}</dd></div>
-      <div><dt>Both teams score</dt><dd>${pct(num(r["P(BTTS)"]))}</dd></div>
-    </dl>
+function fixtureRow(r) {
+  const result = r.predicted_result;
+  const pickHome = result === "Home win", pickAway = result === "Away win";
+  const when = r.Date ? formatDate(r.Date, { weekday: "short", day: "numeric", month: "short" }) : "Date to be confirmed";
+  const odds = /market/.test(r.based_on);
+  const verdict = result === "Draw" ? "Draw" : `${esc(r.predicted_winner)} win`;
+  return `<article class="fx">
+    <div class="when">${esc(when)}</div>
+    <div class="team home${pickHome ? " pick" : ""}">${esc(r.HomeTeam)}</div>
+    <div class="score" aria-label="Predicted score ${esc(r.predicted_score)}">${esc(r.predicted_score)}</div>
+    <div class="team away${pickAway ? " pick" : ""}">${esc(r.AwayTeam)}</div>
+    <div class="verdict"><span class="pill ${PILL[result] || ""}">${verdict}</span>
+      <span class="basis">${odds ? "Uses bookmaker odds" : "Form and Elo only"}</span></div>
   </article>`;
 }
 
-loadCSV("predictions_next_gameweek.csv").then(rows => {
-  const el = document.getElementById("fixtures");
-  if (!rows.length) { el.innerHTML = "<p>No fixtures in the predictions file.</p>"; return; }
-  const days = new Map();
-  rows.forEach(r => { if (!days.has(r.Date)) days.set(r.Date, []); days.get(r.Date).push(r); });
-  el.innerHTML = [...days.keys()].sort().map(date =>
-    `<h2 class="day">${esc(formatDate(date))}</h2><div class="fixtures">${days.get(date).map(card).join("")}</div>`
-  ).join("");
-}).catch(err => showError(document.getElementById("fixtures"), err));
+function render() {
+  const gw = gwSelect.value, team = teamSelect.value;
+  const list = rows.filter(r => (gw === "all" || r.gameweek === gw) && (team === "all" || r.HomeTeam === team || r.AwayTeam === team));
+  if (!list.length) { fixturesEl.innerHTML = "<p>No fixtures match this filter.</p>"; return; }
+  const weeks = new Map();
+  list.forEach(r => { const k = r.gameweek || "TBC"; if (!weeks.has(k)) weeks.set(k, []); weeks.get(k).push(r); });
+  fixturesEl.innerHTML = [...weeks.entries()].map(([week, items]) => {
+    const dates = items.map(r => r.Date).filter(Boolean).sort();
+    const short = { day: "numeric", month: "short" };
+    const span = dates.length ? formatDate(dates[0], short) + (dates.at(-1) !== dates[0] ? " to " + formatDate(dates.at(-1), short) : "") : "";
+    return `<div class="gw"><h2>${/^\d+$/.test(week) ? "Gameweek " + week : "Date to be confirmed"}</h2><span class="small">${esc(span)}</span></div>
+      <div class="fixtures">${items.map(fixtureRow).join("")}</div>`;
+  }).join("");
+}
+
+function summarise() {
+  const count = label => rows.filter(r => r.predicted_result === label).length;
+  const tiles = [
+    ["Matches predicted", rows.length, "Every unplayed match this season"],
+    ["Home wins", count("Home win"), "Predicted"],
+    ["Away wins", count("Away win"), "Predicted"],
+    ["Draws", count("Draw"), "A draw is rarely the single likeliest result"],
+  ];
+  document.getElementById("summary").innerHTML = tiles.map(([label, value, sub]) =>
+    `<div class="tile"><div class="label">${label}</div><div class="value">${value}</div><div class="sub">${esc(sub)}</div></div>`).join("");
+}
+
+loadCSV("predictions_remaining_season.csv").then(data => {
+  rows = data;
+  if (!rows.length) { fixturesEl.innerHTML = "<p>No fixtures in the predictions file.</p>"; return; }
+  const weeks = [...new Set(rows.map(r => r.gameweek).filter(Boolean))].sort((a, b) => a - b);
+  const teams = [...new Set(rows.flatMap(r => [r.HomeTeam, r.AwayTeam]))].sort();
+  gwSelect.innerHTML = '<option value="all">All gameweeks</option>' + weeks.map(w => `<option value="${w}">Gameweek ${w}</option>`).join("");
+  teamSelect.innerHTML = '<option value="all">All teams</option>' + teams.map(t => `<option value="${esc(t)}">${esc(t)}</option>`).join("");
+  gwSelect.value = weeks[0];                     // start on the next gameweek
+  gwSelect.addEventListener("change", render);
+  teamSelect.addEventListener("change", () => { if (teamSelect.value !== "all" && gwSelect.value !== "all") gwSelect.value = "all"; render(); });
+  summarise();
+  render();
+}).catch(err => showError(fixturesEl, err));

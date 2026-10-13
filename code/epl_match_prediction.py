@@ -37,7 +37,7 @@
 # 5. Classification models
 # 6. Goals regression models
 # 7. Evaluation
-# 8. Predicting upcoming fixtures
+# 8. Predicting upcoming fixtures (next gameweek, then a plain result for every remaining match)
 # 9. Results and limitations
 
 # %% [markdown]
@@ -2657,6 +2657,179 @@ predictions.to_csv(Path(CONFIG["out_dir"]) / "predictions_next_gameweek.csv", in
 show(predictions.round(3), "Predictions for the next gameweek")
 
 # %% [markdown]
+# ### Predicted results for every remaining fixture
+#
+# The cell above covers one gameweek. This cell predicts a plain result for **every match still to be played
+# this season**: who wins (or a draw) and a scoreline. No probabilities or odds are written to the output.
+#
+# - **Fixture list.** football-data.co.uk only lists the next round, so the full schedule comes from the public
+#   Fantasy Premier League API. If it cannot be reached, the cell falls back to the next-gameweek fixtures.
+# - **Form is frozen at today.** Nobody knows the results in between, so each fixture is predicted as if it were
+#   the next match for both clubs, using their form, league position and Elo as of the latest result.
+# - **Model.** Bookmaker odds only exist a few days ahead. Fixtures in the next-gameweek table keep that
+#   table's prediction. All other fixtures use the best model that needs no odds (form and Elo only).
+# - **Result and score.** The result is the most likely of home win, draw and away win. The score is the most
+#   likely scoreline that agrees with that result.
+#
+# Treat anything beyond the next gameweek as a rough guide and re-run the notebook each week. Draws are rarely
+# the single most likely outcome, so few or none will be predicted even though about a quarter of matches end
+# level.
+
+# %%
+FPL_API = "https://fantasy.premierleague.com/api/"
+RESULT_LABELS = {0: "Away win", 1: "Draw", 2: "Home win"}       # same order as CLASS_NAMES
+SEASON_PRED_COLS = ["gameweek", "Date", "HomeTeam", "AwayTeam", "predicted_result", "predicted_winner",
+                    "predicted_score", "based_on"]
+
+
+def load_remaining_fixtures(matches: pd.DataFrame) -> Tuple[pd.DataFrame, str]:
+    """Every unplayed fixture of the current season, shaped like the results table but with no scores."""
+    season = int(matches["season_start"].max())
+    current = matches[matches["season_start"] == season]
+    played = set(zip(current["HomeTeam"], current["AwayTeam"]))
+    last_result = matches["Date"].max()
+    try:
+        teams = SESSION.get(FPL_API + "bootstrap-static/", timeout=30)
+        teams.raise_for_status()
+        names = {t["id"]: standardise_team(t["name"]) for t in teams.json()["teams"]}
+        listing = SESSION.get(FPL_API + "fixtures/", timeout=30)
+        listing.raise_for_status()
+        raw = pd.DataFrame([{
+            "gameweek": f.get("event"), "kickoff": f.get("kickoff_time"), "finished": bool(f.get("finished")),
+            "HomeTeam": names[f["team_h"]], "AwayTeam": names[f["team_a"]]} for f in listing.json()])
+        kickoff = pd.to_datetime(raw["kickoff"], utc=True, errors="coerce")
+        raw["Date"] = kickoff.dt.tz_convert("Europe/London").dt.tz_localize(None).dt.normalize()
+        source = "Fantasy Premier League API"
+    except Exception as exc:
+        print(f"FPL fixture list unavailable ({type(exc).__name__}): only the next gameweek will be predicted")
+        raw = upcoming[["Date", "HomeTeam", "AwayTeam"]].copy() if len(upcoming) else pd.DataFrame(
+            columns=["Date", "HomeTeam", "AwayTeam"])
+        raw["gameweek"], raw["finished"] = np.nan, False
+        source = fixtures_source
+    if raw.empty:
+        return pd.DataFrame(), source
+    is_played = pd.Series([pair in played for pair in zip(raw["HomeTeam"], raw["AwayTeam"])], index=raw.index)
+    raw = raw[~raw["finished"] & ~is_played].drop_duplicates(["HomeTeam", "AwayTeam"])
+    known = set(current["HomeTeam"]) | set(current["AwayTeam"])
+    unknown = sorted((set(raw["HomeTeam"]) | set(raw["AwayTeam"])) - known)
+    if unknown:
+        print(f"Warning: clubs not in this season's results (check TEAM_NAME_MAP), fixtures skipped: {unknown}")
+        raw = raw[raw["HomeTeam"].isin(known) & raw["AwayTeam"].isin(known)]
+    if raw.empty:
+        return pd.DataFrame(), source
+    # Postponed matches have no date yet. They get a placeholder after the last scheduled match so that
+    # the feature code can sort them; the output shows their date as blank.
+    raw["date_known"] = raw["Date"].notna()
+    placeholder = max(raw["Date"].max() if raw["date_known"].any() else last_result, last_result) + pd.Timedelta(days=1)
+    raw["Date"] = raw["Date"].fillna(placeholder)
+    raw.loc[raw["Date"] <= last_result, "Date"] = last_result + pd.Timedelta(days=1)   # must follow every result
+    raw = raw.sort_values(["Date", "HomeTeam"]).reset_index(drop=True)
+    fixtures = raw.reindex(columns=matches.columns)
+    fixtures[BLANK_ON_FIXTURE] = np.nan
+    fixtures["season_start"] = season
+    fixtures["season"] = season_label(season)
+    fixtures["is_fixture"] = True
+    fixtures["match_id"] = np.arange(len(fixtures)) + int(matches["match_id"].max()) + 1_000
+    fixtures["gameweek"], fixtures["date_known"] = raw["gameweek"].values, raw["date_known"].values
+    # Round k holds each club's k-th remaining match, so no club appears twice in one round.
+    seen: Dict[str, int] = defaultdict(int)
+    rounds = []
+    for home, away in zip(fixtures["HomeTeam"], fixtures["AwayTeam"]):
+        k = max(seen[home], seen[away])
+        seen[home], seen[away] = k + 1, k + 1
+        rounds.append(k)
+    fixtures["round"] = rounds
+    return fixtures, source
+
+
+def remaining_fixture_features(matches: pd.DataFrame, fixtures: pd.DataFrame) -> pd.DataFrame:
+    """Pre-match features for every remaining fixture, with each club's form frozen at the latest result.
+
+    Each round is appended to the results on its own, so `build_features` treats every fixture as the next
+    match for both clubs and never sees another unplayed fixture in a rolling window.
+    """
+    extra = ["gameweek", "date_known", "round"]
+    combined = pd.concat([matches, fixtures.drop(columns=extra)], ignore_index=True)
+    combined["is_fixture"] = combined["is_fixture"].astype(bool)
+    if HAS_CLUBELO:
+        combined = safe_optional(load_clubelo, combined, "ClubElo (remaining fixtures)", ["clubelo_home", "clubelo_away"])
+    results_part, fixtures_part = combined[~combined["is_fixture"]], combined[combined["is_fixture"]]
+    round_of = fixtures.set_index("match_id")["round"]
+    blocks = []
+    for k in sorted(round_of.unique()):
+        block = fixtures_part[fixtures_part["match_id"].map(round_of) == k]
+        table, _ = build_features(pd.concat([results_part, block], ignore_index=True), CONFIG)
+        blocks.append(table[table["is_fixture"]])
+    X = pd.concat(blocks, ignore_index=True)
+    return X.merge(fixtures[["match_id"] + extra], on="match_id", how="left")
+
+
+def result_and_score(P: np.ndarray, grid: np.ndarray) -> Tuple[np.ndarray, List[str]]:
+    """Most likely result per match and the most likely scoreline that agrees with it."""
+    result = P.argmax(axis=1)                                   # 0 = away win, 1 = draw, 2 = home win
+    n_goals = grid.shape[1]
+    i, j = np.indices((n_goals, n_goals))
+    region = {0: i < j, 1: i == j, 2: i > j}
+    scores = []
+    for row, outcome in enumerate(result):
+        flat = np.where(region[int(outcome)], grid[row], -1.0).argmax()
+        scores.append(f"{flat // n_goals}-{flat % n_goals}")
+    return result, scores
+
+
+def predict_remaining_season() -> pd.DataFrame:
+    fixtures, source = load_remaining_fixtures(matches)
+    if fixtures.empty:
+        print("No remaining fixtures found for this season.")
+        return pd.DataFrame(columns=SEASON_PRED_COLS)
+    _t = time.time()
+    X = remaining_fixture_features(matches, fixtures)
+    assert DATA["Date"].max() < X["Date"].min(), "results must precede fixtures"
+    # Models that need no odds, refitted on every completed match.
+    goals_key = min((k for k in GOALS if k[1] != "C_with_market"), key=lambda k: RESULTS[k]["cv_logloss"])
+    classifier = build_classifier_bundle(BEST_NO_ODDS_KEY, IDX_ALL)
+    goals = build_goals_bundle(goals_key, IDX_ALL)
+    P = bundle_predict_proba(classifier, X)
+    lam_h, lam_a = goals_predict(goals["goals"], X[goals["features"]])
+    grid = scoreline_grid(lam_h, lam_a, goals["goals"]["rho"], CONFIG["max_goals"])
+    result, scores = result_and_score(P, grid)
+    table = pd.DataFrame({
+        "gameweek": pd.to_numeric(X["gameweek"], errors="coerce").astype("Int64"),
+        "Date": X["Date"].dt.date.where(X["date_known"].astype(bool), None),
+        "HomeTeam": X["HomeTeam"], "AwayTeam": X["AwayTeam"], "result": result, "predicted_score": scores,
+        "based_on": "form and Elo", "sort_date": X["Date"]})
+    # Fixtures already in the next-gameweek table keep that table's prediction, which also used the odds.
+    if len(predictions):
+        P_week = predictions[["P(A)", "P(D)", "P(H)"]].to_numpy(dtype=float)
+        grid_week = scoreline_grid(predictions["xG_home"].to_numpy(dtype=float), predictions["xG_away"].to_numpy(dtype=float),
+                                   FINAL_GOALS["goals"]["rho"], CONFIG["max_goals"])
+        week_result, week_scores = result_and_score(P_week, grid_week)
+        has_odds = predictions["market_P(H)"].notna().to_numpy() if "market" in BEST_KEY[1] else np.ones(len(predictions), bool)
+        week = {(h, a): (r, s, "form, Elo and market odds" if odds and "market" in BEST_KEY[1] else "form and Elo")
+                for h, a, r, s, odds in zip(predictions["HomeTeam"], predictions["AwayTeam"], week_result, week_scores, has_odds)}
+        for idx, pair in enumerate(zip(table["HomeTeam"], table["AwayTeam"])):
+            if pair in week:
+                table.loc[idx, ["result", "predicted_score", "based_on"]] = week[pair]
+    table["result"] = table["result"].astype(int)
+    table["predicted_result"] = table["result"].map(RESULT_LABELS)
+    table["predicted_winner"] = np.where(table["result"] == 2, table["HomeTeam"],
+                                         np.where(table["result"] == 0, table["AwayTeam"], "Draw"))
+    table = table.sort_values(["sort_date", "HomeTeam"], kind="mergesort").reset_index(drop=True)[SEASON_PRED_COLS]
+    counts = table["predicted_result"].value_counts()
+    print(f"Fixtures source: {source} | {len(table)} remaining fixtures in {int(X['round'].max()) + 1} rounds "
+          f"| features built in {time.time() - _t:.0f}s")
+    print(f"Models without odds: 1X2 {BEST_NO_ODDS_KEY} | goals {goals_key}")
+    print("Predicted results: " + ", ".join(f"{counts.get(label, 0)} {label.lower()}s" for label in RESULT_LABELS.values()))
+    return table
+
+
+season_predictions = run_section("remaining-season predictions", predict_remaining_season)
+if not isinstance(season_predictions, pd.DataFrame):
+    season_predictions = pd.DataFrame(columns=SEASON_PRED_COLS)
+season_predictions.to_csv(Path(CONFIG["out_dir"]) / "predictions_remaining_season.csv", index=False)
+show(season_predictions.head(30), f"Predicted results for the rest of the season (first 30 of {len(season_predictions)})")
+
+# %% [markdown]
 # ### Saved artefacts
 
 # %%
@@ -2677,7 +2850,8 @@ def save_artifacts() -> None:
         "usage": "probabilities = bundle_predict_proba(bundle['classifier'], feature_frame); columns are [Away, Draw, Home]",
     }, out_dir / "best_model.joblib")
     for name in ("features.parquet", "model_comparison.csv", "goals_regression_comparison.csv", "xg_experiment.csv",
-                 "best_model.joblib", "predictions_next_gameweek.csv"):
+                 "best_model.joblib", "predictions_next_gameweek.csv",
+                 "predictions_remaining_season.csv"):
         path = out_dir / name
         print(f"  {'saved ' if path.exists() else 'absent'} {path}" + (f" ({path.stat().st_size / 1024:.0f} KB)" if path.exists() else ""))
 
@@ -2717,6 +2891,9 @@ save_artifacts()
 # - **Data caveats.** The bookmaker benchmark uses closing odds only where they exist. Understat xG and ClubElo
 #   are optional and may be missing on a given run (see the Data availability log). Optuna is time-boxed, so
 #   tuned parameters can differ slightly between machines.
+# - **Rest-of-season results are a rough guide.** `predictions_remaining_season.csv` freezes every club's form
+#   at the latest result and uses no odds, so it cannot react to anything that happens in between. Re-run the
+#   notebook each week. Only the next gameweek uses fresh form and market prices.
 # - **Betting.** The backtest is illustrative. It ignores stake limits, price availability and odds movement.
 
 # %%

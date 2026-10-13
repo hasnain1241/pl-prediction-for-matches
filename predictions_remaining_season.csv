@@ -1,0 +1,331 @@
+gameweek,Date,HomeTeam,AwayTeam,predicted_result,predicted_winner,predicted_score,based_on
+6,2026-10-10,Arsenal,Leeds,Home win,Arsenal,1-0,"form, Elo and market odds"
+6,2026-10-10,Aston Villa,Brentford,Away win,Brentford,1-2,"form, Elo and market odds"
+6,2026-10-10,Chelsea,Bournemouth,Home win,Chelsea,2-1,"form, Elo and market odds"
+6,2026-10-10,Ipswich,Fulham,Away win,Fulham,1-2,"form, Elo and market odds"
+6,2026-10-10,Man United,Tottenham,Home win,Man United,2-1,"form, Elo and market odds"
+6,2026-10-10,Sunderland,Brighton,Away win,Brighton,1-2,"form, Elo and market odds"
+6,2026-10-11,Crystal Palace,Nott'm Forest,Away win,Nott'm Forest,1-2,"form, Elo and market odds"
+6,2026-10-11,Hull,Everton,Away win,Everton,0-1,"form, Elo and market odds"
+6,2026-10-11,Liverpool,Man City,Home win,Liverpool,2-1,"form, Elo and market odds"
+6,2026-10-12,Coventry,Newcastle,Away win,Newcastle,0-1,"form, Elo and market odds"
+7,2026-10-17,Brentford,Liverpool,Home win,Brentford,2-1,form and Elo
+7,2026-10-17,Everton,Chelsea,Home win,Everton,1-0,form and Elo
+7,2026-10-17,Fulham,Hull,Home win,Fulham,1-0,form and Elo
+7,2026-10-17,Man City,Ipswich,Home win,Man City,2-0,form and Elo
+7,2026-10-17,Newcastle,Aston Villa,Home win,Newcastle,1-0,form and Elo
+7,2026-10-18,Bournemouth,Sunderland,Home win,Bournemouth,1-0,form and Elo
+7,2026-10-18,Brighton,Crystal Palace,Home win,Brighton,2-0,form and Elo
+7,2026-10-18,Leeds,Man United,Away win,Man United,1-2,form and Elo
+7,2026-10-18,Nott'm Forest,Arsenal,Away win,Arsenal,0-1,form and Elo
+7,2026-10-19,Tottenham,Coventry,Home win,Tottenham,1-0,form and Elo
+8,2026-10-23,Ipswich,Nott'm Forest,Away win,Nott'm Forest,1-2,form and Elo
+8,2026-10-24,Arsenal,Everton,Home win,Arsenal,1-0,form and Elo
+8,2026-10-24,Aston Villa,Man City,Away win,Man City,0-1,form and Elo
+8,2026-10-24,Chelsea,Tottenham,Home win,Chelsea,2-1,form and Elo
+8,2026-10-24,Coventry,Fulham,Away win,Fulham,0-1,form and Elo
+8,2026-10-25,Crystal Palace,Newcastle,Away win,Newcastle,0-1,form and Elo
+8,2026-10-25,Hull,Brentford,Away win,Brentford,0-1,form and Elo
+8,2026-10-25,Liverpool,Brighton,Home win,Liverpool,2-1,form and Elo
+8,2026-10-25,Man United,Bournemouth,Home win,Man United,2-1,form and Elo
+8,2026-10-25,Sunderland,Leeds,Home win,Sunderland,1-0,form and Elo
+9,2026-10-31,Aston Villa,Fulham,Home win,Aston Villa,1-0,form and Elo
+9,2026-10-31,Bournemouth,Leeds,Home win,Bournemouth,1-0,form and Elo
+9,2026-10-31,Brentford,Nott'm Forest,Home win,Brentford,2-1,form and Elo
+9,2026-10-31,Chelsea,Man United,Away win,Man United,1-2,form and Elo
+9,2026-10-31,Coventry,Sunderland,Away win,Sunderland,0-1,form and Elo
+9,2026-10-31,Hull,Ipswich,Home win,Hull,1-0,form and Elo
+9,2026-10-31,Man City,Brighton,Home win,Man City,2-1,form and Elo
+9,2026-10-31,Tottenham,Crystal Palace,Home win,Tottenham,1-0,form and Elo
+9,2026-11-01,Liverpool,Arsenal,Away win,Arsenal,0-1,form and Elo
+9,2026-11-02,Newcastle,Everton,Home win,Newcastle,1-0,form and Elo
+10,2026-11-06,Everton,Coventry,Home win,Everton,1-0,form and Elo
+10,2026-11-07,Arsenal,Hull,Home win,Arsenal,2-0,form and Elo
+10,2026-11-07,Fulham,Newcastle,Home win,Fulham,1-0,form and Elo
+10,2026-11-07,Leeds,Tottenham,Home win,Leeds,1-0,form and Elo
+10,2026-11-07,Nott'm Forest,Man City,Away win,Man City,0-1,form and Elo
+10,2026-11-08,Brighton,Brentford,Home win,Brighton,2-1,form and Elo
+10,2026-11-08,Crystal Palace,Liverpool,Away win,Liverpool,0-1,form and Elo
+10,2026-11-08,Ipswich,Bournemouth,Away win,Bournemouth,0-1,form and Elo
+10,2026-11-08,Man United,Aston Villa,Home win,Man United,2-0,form and Elo
+10,2026-11-08,Sunderland,Chelsea,Away win,Chelsea,0-1,form and Elo
+11,2026-11-21,Aston Villa,Sunderland,Home win,Aston Villa,1-0,form and Elo
+11,2026-11-21,Bournemouth,Nott'm Forest,Home win,Bournemouth,2-1,form and Elo
+11,2026-11-21,Chelsea,Leeds,Home win,Chelsea,2-1,form and Elo
+11,2026-11-21,Coventry,Crystal Palace,Away win,Crystal Palace,0-1,form and Elo
+11,2026-11-21,Man City,Fulham,Home win,Man City,2-0,form and Elo
+11,2026-11-21,Newcastle,Arsenal,Away win,Arsenal,0-1,form and Elo
+11,2026-11-21,Tottenham,Ipswich,Home win,Tottenham,1-0,form and Elo
+11,2026-11-22,Hull,Brighton,Away win,Brighton,1-2,form and Elo
+11,2026-11-22,Liverpool,Man United,Home win,Liverpool,2-1,form and Elo
+11,2026-11-23,Brentford,Everton,Home win,Brentford,1-0,form and Elo
+12,2026-11-27,Nott'm Forest,Chelsea,Home win,Nott'm Forest,1-0,form and Elo
+12,2026-11-28,Ipswich,Aston Villa,Away win,Aston Villa,0-1,form and Elo
+12,2026-11-28,Leeds,Coventry,Home win,Leeds,1-0,form and Elo
+12,2026-11-28,Man United,Brentford,Home win,Man United,2-1,form and Elo
+12,2026-11-29,Arsenal,Man City,Home win,Arsenal,1-0,form and Elo
+12,2026-11-29,Brighton,Newcastle,Home win,Brighton,2-0,form and Elo
+12,2026-11-29,Crystal Palace,Hull,Home win,Crystal Palace,1-0,form and Elo
+12,2026-11-29,Everton,Liverpool,Home win,Everton,2-1,form and Elo
+12,2026-11-29,Fulham,Bournemouth,Away win,Bournemouth,1-2,form and Elo
+12,2026-11-29,Sunderland,Tottenham,Home win,Sunderland,1-0,form and Elo
+13,2026-12-02,Aston Villa,Everton,Home win,Aston Villa,1-0,form and Elo
+13,2026-12-02,Bournemouth,Brighton,Away win,Brighton,1-2,form and Elo
+13,2026-12-02,Brentford,Arsenal,Away win,Arsenal,0-1,form and Elo
+13,2026-12-02,Chelsea,Crystal Palace,Home win,Chelsea,2-1,form and Elo
+13,2026-12-02,Coventry,Ipswich,Home win,Coventry,1-0,form and Elo
+13,2026-12-02,Hull,Nott'm Forest,Away win,Nott'm Forest,1-2,form and Elo
+13,2026-12-02,Liverpool,Sunderland,Home win,Liverpool,1-0,form and Elo
+13,2026-12-02,Man City,Leeds,Home win,Man City,2-0,form and Elo
+13,2026-12-02,Newcastle,Man United,Away win,Man United,1-2,form and Elo
+13,2026-12-02,Tottenham,Fulham,Away win,Fulham,0-1,form and Elo
+14,2026-12-05,Aston Villa,Crystal Palace,Home win,Aston Villa,1-0,form and Elo
+14,2026-12-05,Bournemouth,Hull,Home win,Bournemouth,1-0,form and Elo
+14,2026-12-05,Brentford,Man City,Away win,Man City,0-1,form and Elo
+14,2026-12-05,Chelsea,Liverpool,Away win,Liverpool,1-2,form and Elo
+14,2026-12-05,Everton,Fulham,Home win,Everton,1-0,form and Elo
+14,2026-12-05,Leeds,Ipswich,Home win,Leeds,1-0,form and Elo
+14,2026-12-05,Man United,Coventry,Home win,Man United,2-0,form and Elo
+14,2026-12-05,Newcastle,Sunderland,Home win,Newcastle,1-0,form and Elo
+14,2026-12-05,Nott'm Forest,Brighton,Away win,Brighton,1-2,form and Elo
+14,2026-12-05,Tottenham,Arsenal,Away win,Arsenal,0-1,form and Elo
+15,2026-12-12,Arsenal,Bournemouth,Home win,Arsenal,1-0,form and Elo
+15,2026-12-12,Brighton,Everton,Home win,Brighton,1-0,form and Elo
+15,2026-12-12,Coventry,Aston Villa,Away win,Aston Villa,0-1,form and Elo
+15,2026-12-12,Crystal Palace,Man United,Away win,Man United,1-2,form and Elo
+15,2026-12-12,Fulham,Brentford,Home win,Fulham,2-1,form and Elo
+15,2026-12-12,Hull,Tottenham,Away win,Tottenham,0-1,form and Elo
+15,2026-12-12,Ipswich,Newcastle,Away win,Newcastle,0-1,form and Elo
+15,2026-12-12,Liverpool,Leeds,Home win,Liverpool,1-0,form and Elo
+15,2026-12-12,Man City,Chelsea,Home win,Man City,2-0,form and Elo
+15,2026-12-12,Sunderland,Nott'm Forest,Away win,Nott'm Forest,1-2,form and Elo
+16,2026-12-19,Arsenal,Man United,Home win,Arsenal,2-1,form and Elo
+16,2026-12-19,Bournemouth,Coventry,Home win,Bournemouth,1-0,form and Elo
+16,2026-12-19,Brentford,Newcastle,Home win,Brentford,1-0,form and Elo
+16,2026-12-19,Brighton,Ipswich,Home win,Brighton,2-0,form and Elo
+16,2026-12-19,Chelsea,Aston Villa,Home win,Chelsea,2-1,form and Elo
+16,2026-12-19,Leeds,Fulham,Home win,Leeds,1-0,form and Elo
+16,2026-12-19,Liverpool,Tottenham,Home win,Liverpool,1-0,form and Elo
+16,2026-12-19,Man City,Hull,Home win,Man City,2-0,form and Elo
+16,2026-12-19,Nott'm Forest,Everton,Home win,Nott'm Forest,1-0,form and Elo
+16,2026-12-19,Sunderland,Crystal Palace,Home win,Sunderland,1-0,form and Elo
+17,2026-12-26,Aston Villa,Leeds,Home win,Aston Villa,1-0,form and Elo
+17,2026-12-26,Everton,Sunderland,Home win,Everton,1-0,form and Elo
+17,2026-12-26,Fulham,Brighton,Away win,Brighton,1-2,form and Elo
+17,2026-12-26,Hull,Liverpool,Away win,Liverpool,1-2,form and Elo
+17,2026-12-26,Ipswich,Brentford,Away win,Brentford,0-1,form and Elo
+17,2026-12-26,Newcastle,Man City,Away win,Man City,0-1,form and Elo
+17,2026-12-26,Tottenham,Bournemouth,Away win,Bournemouth,0-1,form and Elo
+17,2026-12-27,Coventry,Chelsea,Away win,Chelsea,0-1,form and Elo
+17,2026-12-27,Crystal Palace,Arsenal,Away win,Arsenal,0-1,form and Elo
+17,2026-12-27,Man United,Nott'm Forest,Home win,Man United,2-1,form and Elo
+18,2026-12-29,Everton,Man City,Away win,Man City,0-1,form and Elo
+18,2026-12-29,Hull,Leeds,Away win,Leeds,0-1,form and Elo
+18,2026-12-29,Tottenham,Brighton,Away win,Brighton,1-2,form and Elo
+18,2026-12-30,Aston Villa,Liverpool,Away win,Liverpool,1-2,form and Elo
+18,2026-12-30,Coventry,Brentford,Away win,Brentford,0-1,form and Elo
+18,2026-12-30,Crystal Palace,Bournemouth,Away win,Bournemouth,0-1,form and Elo
+18,2026-12-30,Fulham,Arsenal,Away win,Arsenal,0-1,form and Elo
+18,2026-12-30,Ipswich,Chelsea,Away win,Chelsea,1-2,form and Elo
+18,2026-12-30,Man United,Sunderland,Home win,Man United,2-0,form and Elo
+18,2026-12-30,Newcastle,Nott'm Forest,Home win,Newcastle,2-1,form and Elo
+19,2027-01-01,Leeds,Everton,Home win,Leeds,1-0,form and Elo
+19,2027-01-02,Arsenal,Ipswich,Home win,Arsenal,2-0,form and Elo
+19,2027-01-02,Bournemouth,Aston Villa,Home win,Bournemouth,1-0,form and Elo
+19,2027-01-02,Brentford,Crystal Palace,Home win,Brentford,1-0,form and Elo
+19,2027-01-02,Brighton,Man United,Home win,Brighton,2-1,form and Elo
+19,2027-01-02,Liverpool,Coventry,Home win,Liverpool,2-0,form and Elo
+19,2027-01-02,Nott'm Forest,Fulham,Home win,Nott'm Forest,1-0,form and Elo
+19,2027-01-02,Sunderland,Hull,Home win,Sunderland,1-0,form and Elo
+19,2027-01-03,Chelsea,Newcastle,Home win,Chelsea,2-1,form and Elo
+19,2027-01-03,Man City,Tottenham,Home win,Man City,2-0,form and Elo
+20,2027-01-05,Arsenal,Brentford,Home win,Arsenal,2-0,form and Elo
+20,2027-01-05,Brighton,Bournemouth,Home win,Brighton,2-1,form and Elo
+20,2027-01-05,Everton,Aston Villa,Home win,Everton,1-0,form and Elo
+20,2027-01-05,Nott'm Forest,Hull,Home win,Nott'm Forest,1-0,form and Elo
+20,2027-01-05,Sunderland,Liverpool,Away win,Liverpool,1-2,form and Elo
+20,2027-01-06,Crystal Palace,Chelsea,Away win,Chelsea,0-1,form and Elo
+20,2027-01-06,Fulham,Tottenham,Home win,Fulham,1-0,form and Elo
+20,2027-01-06,Ipswich,Coventry,Home win,Ipswich,1-0,form and Elo
+20,2027-01-06,Leeds,Man City,Away win,Man City,0-1,form and Elo
+20,2027-01-07,Man United,Newcastle,Home win,Man United,2-1,form and Elo
+21,2027-01-16,Aston Villa,Man United,Away win,Man United,1-2,form and Elo
+21,2027-01-16,Bournemouth,Ipswich,Home win,Bournemouth,1-0,form and Elo
+21,2027-01-16,Brentford,Brighton,Away win,Brighton,1-2,form and Elo
+21,2027-01-16,Chelsea,Sunderland,Home win,Chelsea,2-1,form and Elo
+21,2027-01-16,Coventry,Everton,Away win,Everton,0-1,form and Elo
+21,2027-01-16,Hull,Arsenal,Away win,Arsenal,0-1,form and Elo
+21,2027-01-16,Liverpool,Crystal Palace,Home win,Liverpool,1-0,form and Elo
+21,2027-01-16,Man City,Nott'm Forest,Home win,Man City,2-0,form and Elo
+21,2027-01-16,Newcastle,Fulham,Home win,Newcastle,1-0,form and Elo
+21,2027-01-16,Tottenham,Leeds,Home win,Tottenham,1-0,form and Elo
+22,2027-01-23,Arsenal,Newcastle,Home win,Arsenal,2-0,form and Elo
+22,2027-01-23,Brighton,Man City,Away win,Man City,1-2,form and Elo
+22,2027-01-23,Crystal Palace,Tottenham,Home win,Crystal Palace,1-0,form and Elo
+22,2027-01-23,Everton,Brentford,Home win,Everton,1-0,form and Elo
+22,2027-01-23,Fulham,Aston Villa,Home win,Fulham,1-0,form and Elo
+22,2027-01-23,Ipswich,Hull,Home win,Ipswich,1-0,form and Elo
+22,2027-01-23,Leeds,Chelsea,Home win,Leeds,1-0,form and Elo
+22,2027-01-23,Man United,Liverpool,Home win,Man United,2-1,form and Elo
+22,2027-01-23,Nott'm Forest,Bournemouth,Home win,Nott'm Forest,1-0,form and Elo
+22,2027-01-23,Sunderland,Coventry,Home win,Sunderland,1-0,form and Elo
+23,2027-01-30,Aston Villa,Ipswich,Home win,Aston Villa,1-0,form and Elo
+23,2027-01-30,Bournemouth,Fulham,Home win,Bournemouth,1-0,form and Elo
+23,2027-01-30,Brentford,Man United,Away win,Man United,1-2,form and Elo
+23,2027-01-30,Chelsea,Nott'm Forest,Home win,Chelsea,2-1,form and Elo
+23,2027-01-30,Coventry,Leeds,Away win,Leeds,0-1,form and Elo
+23,2027-01-30,Hull,Crystal Palace,Home win,Hull,1-0,form and Elo
+23,2027-01-30,Liverpool,Everton,Home win,Liverpool,1-0,form and Elo
+23,2027-01-30,Man City,Arsenal,Home win,Man City,1-0,form and Elo
+23,2027-01-30,Newcastle,Brighton,Away win,Brighton,1-2,form and Elo
+23,2027-01-30,Tottenham,Sunderland,Home win,Tottenham,1-0,form and Elo
+24,2027-02-06,Arsenal,Liverpool,Home win,Arsenal,2-1,form and Elo
+24,2027-02-06,Brighton,Hull,Home win,Brighton,2-0,form and Elo
+24,2027-02-06,Crystal Palace,Coventry,Home win,Crystal Palace,1-0,form and Elo
+24,2027-02-06,Everton,Newcastle,Home win,Everton,1-0,form and Elo
+24,2027-02-06,Fulham,Man City,Away win,Man City,0-1,form and Elo
+24,2027-02-06,Ipswich,Tottenham,Away win,Tottenham,0-1,form and Elo
+24,2027-02-06,Leeds,Bournemouth,Away win,Bournemouth,0-1,form and Elo
+24,2027-02-06,Man United,Chelsea,Home win,Man United,2-1,form and Elo
+24,2027-02-06,Nott'm Forest,Brentford,Home win,Nott'm Forest,1-0,form and Elo
+24,2027-02-06,Sunderland,Aston Villa,Home win,Sunderland,1-0,form and Elo
+25,2027-02-10,Aston Villa,Bournemouth,Away win,Bournemouth,0-1,form and Elo
+25,2027-02-10,Coventry,Liverpool,Away win,Liverpool,0-1,form and Elo
+25,2027-02-10,Crystal Palace,Brentford,Away win,Brentford,0-1,form and Elo
+25,2027-02-10,Everton,Leeds,Home win,Everton,1-0,form and Elo
+25,2027-02-10,Fulham,Nott'm Forest,Home win,Fulham,2-1,form and Elo
+25,2027-02-10,Hull,Sunderland,Away win,Sunderland,0-1,form and Elo
+25,2027-02-10,Ipswich,Arsenal,Away win,Arsenal,0-1,form and Elo
+25,2027-02-10,Man United,Brighton,Home win,Man United,2-1,form and Elo
+25,2027-02-10,Newcastle,Chelsea,Home win,Newcastle,2-1,form and Elo
+25,2027-02-10,Tottenham,Man City,Away win,Man City,0-1,form and Elo
+26,2027-02-20,Arsenal,Fulham,Home win,Arsenal,2-0,form and Elo
+26,2027-02-20,Bournemouth,Crystal Palace,Home win,Bournemouth,1-0,form and Elo
+26,2027-02-20,Brentford,Coventry,Home win,Brentford,1-0,form and Elo
+26,2027-02-20,Brighton,Tottenham,Home win,Brighton,2-0,form and Elo
+26,2027-02-20,Chelsea,Ipswich,Home win,Chelsea,2-1,form and Elo
+26,2027-02-20,Leeds,Aston Villa,Home win,Leeds,1-0,form and Elo
+26,2027-02-20,Liverpool,Hull,Home win,Liverpool,1-0,form and Elo
+26,2027-02-20,Man City,Newcastle,Home win,Man City,2-0,form and Elo
+26,2027-02-20,Nott'm Forest,Man United,Away win,Man United,1-2,form and Elo
+26,2027-02-20,Sunderland,Everton,Away win,Everton,0-1,form and Elo
+27,2027-02-27,Aston Villa,Chelsea,Home win,Aston Villa,1-0,form and Elo
+27,2027-02-27,Coventry,Bournemouth,Away win,Bournemouth,0-1,form and Elo
+27,2027-02-27,Crystal Palace,Sunderland,Away win,Sunderland,0-1,form and Elo
+27,2027-02-27,Everton,Nott'm Forest,Home win,Everton,2-1,form and Elo
+27,2027-02-27,Fulham,Leeds,Home win,Fulham,1-0,form and Elo
+27,2027-02-27,Hull,Man City,Away win,Man City,0-2,form and Elo
+27,2027-02-27,Ipswich,Brighton,Away win,Brighton,1-2,form and Elo
+27,2027-02-27,Man United,Arsenal,Home win,Man United,1-0,form and Elo
+27,2027-02-27,Newcastle,Brentford,Home win,Newcastle,2-1,form and Elo
+27,2027-02-27,Tottenham,Liverpool,Away win,Liverpool,1-2,form and Elo
+28,2027-03-03,Arsenal,Crystal Palace,Home win,Arsenal,2-0,form and Elo
+28,2027-03-03,Bournemouth,Tottenham,Home win,Bournemouth,1-0,form and Elo
+28,2027-03-03,Brentford,Ipswich,Home win,Brentford,1-0,form and Elo
+28,2027-03-03,Brighton,Fulham,Home win,Brighton,2-1,form and Elo
+28,2027-03-03,Chelsea,Coventry,Home win,Chelsea,2-0,form and Elo
+28,2027-03-03,Leeds,Hull,Home win,Leeds,1-0,form and Elo
+28,2027-03-03,Liverpool,Aston Villa,Home win,Liverpool,1-0,form and Elo
+28,2027-03-03,Man City,Everton,Home win,Man City,2-0,form and Elo
+28,2027-03-03,Nott'm Forest,Newcastle,Home win,Nott'm Forest,1-0,form and Elo
+28,2027-03-03,Sunderland,Man United,Away win,Man United,1-2,form and Elo
+29,2027-03-13,Aston Villa,Hull,Home win,Aston Villa,1-0,form and Elo
+29,2027-03-13,Bournemouth,Newcastle,Home win,Bournemouth,1-0,form and Elo
+29,2027-03-13,Chelsea,Arsenal,Away win,Arsenal,0-1,form and Elo
+29,2027-03-13,Coventry,Man City,Away win,Man City,0-2,form and Elo
+29,2027-03-13,Crystal Palace,Fulham,Away win,Fulham,0-1,form and Elo
+29,2027-03-13,Leeds,Brighton,Away win,Brighton,1-2,form and Elo
+29,2027-03-13,Liverpool,Ipswich,Home win,Liverpool,2-0,form and Elo
+29,2027-03-13,Man United,Everton,Home win,Man United,2-1,form and Elo
+29,2027-03-13,Sunderland,Brentford,Away win,Brentford,0-1,form and Elo
+29,2027-03-13,Tottenham,Nott'm Forest,Away win,Nott'm Forest,1-2,form and Elo
+30,2027-03-20,Arsenal,Sunderland,Home win,Arsenal,2-0,form and Elo
+30,2027-03-20,Brentford,Bournemouth,Home win,Brentford,1-0,form and Elo
+30,2027-03-20,Brighton,Coventry,Home win,Brighton,2-0,form and Elo
+30,2027-03-20,Everton,Tottenham,Home win,Everton,1-0,form and Elo
+30,2027-03-20,Fulham,Liverpool,Away win,Liverpool,1-2,form and Elo
+30,2027-03-20,Hull,Chelsea,Away win,Chelsea,1-2,form and Elo
+30,2027-03-20,Ipswich,Crystal Palace,Home win,Ipswich,1-0,form and Elo
+30,2027-03-20,Man City,Man United,Home win,Man City,2-1,form and Elo
+30,2027-03-20,Newcastle,Leeds,Home win,Newcastle,1-0,form and Elo
+30,2027-03-20,Nott'm Forest,Aston Villa,Home win,Nott'm Forest,1-0,form and Elo
+31,2027-04-10,Aston Villa,Brighton,Away win,Brighton,1-2,form and Elo
+31,2027-04-10,Bournemouth,Man City,Away win,Man City,0-1,form and Elo
+31,2027-04-10,Chelsea,Fulham,Home win,Chelsea,2-1,form and Elo
+31,2027-04-10,Coventry,Arsenal,Away win,Arsenal,0-1,form and Elo
+31,2027-04-10,Crystal Palace,Everton,Away win,Everton,0-1,form and Elo
+31,2027-04-10,Leeds,Nott'm Forest,Home win,Leeds,1-0,form and Elo
+31,2027-04-10,Liverpool,Newcastle,Home win,Liverpool,1-0,form and Elo
+31,2027-04-10,Man United,Hull,Home win,Man United,2-0,form and Elo
+31,2027-04-10,Sunderland,Ipswich,Home win,Sunderland,1-0,form and Elo
+31,2027-04-10,Tottenham,Brentford,Away win,Brentford,0-1,form and Elo
+32,2027-04-17,Arsenal,Aston Villa,Home win,Arsenal,2-0,form and Elo
+32,2027-04-17,Brentford,Leeds,Home win,Brentford,1-0,form and Elo
+32,2027-04-17,Brighton,Chelsea,Home win,Brighton,2-1,form and Elo
+32,2027-04-17,Everton,Bournemouth,Home win,Everton,1-0,form and Elo
+32,2027-04-17,Fulham,Sunderland,Home win,Fulham,1-0,form and Elo
+32,2027-04-17,Hull,Coventry,Home win,Hull,1-0,form and Elo
+32,2027-04-17,Ipswich,Man United,Away win,Man United,1-2,form and Elo
+32,2027-04-17,Man City,Crystal Palace,Home win,Man City,2-0,form and Elo
+32,2027-04-17,Newcastle,Tottenham,Home win,Newcastle,1-0,form and Elo
+32,2027-04-17,Nott'm Forest,Liverpool,Home win,Nott'm Forest,1-0,form and Elo
+33,2027-04-24,Aston Villa,Coventry,Home win,Aston Villa,1-0,form and Elo
+33,2027-04-24,Bournemouth,Arsenal,Away win,Arsenal,0-1,form and Elo
+33,2027-04-24,Brentford,Fulham,Home win,Brentford,1-0,form and Elo
+33,2027-04-24,Chelsea,Man City,Away win,Man City,1-2,form and Elo
+33,2027-04-24,Everton,Brighton,Away win,Brighton,1-2,form and Elo
+33,2027-04-24,Leeds,Liverpool,Away win,Liverpool,0-1,form and Elo
+33,2027-04-24,Man United,Crystal Palace,Home win,Man United,2-0,form and Elo
+33,2027-04-24,Newcastle,Ipswich,Home win,Newcastle,1-0,form and Elo
+33,2027-04-24,Nott'm Forest,Sunderland,Home win,Nott'm Forest,1-0,form and Elo
+33,2027-04-24,Tottenham,Hull,Home win,Tottenham,1-0,form and Elo
+34,2027-05-01,Arsenal,Tottenham,Home win,Arsenal,2-0,form and Elo
+34,2027-05-01,Brighton,Nott'm Forest,Home win,Brighton,2-1,form and Elo
+34,2027-05-01,Coventry,Man United,Away win,Man United,0-2,form and Elo
+34,2027-05-01,Crystal Palace,Aston Villa,Home win,Crystal Palace,1-0,form and Elo
+34,2027-05-01,Fulham,Everton,Home win,Fulham,1-0,form and Elo
+34,2027-05-01,Hull,Bournemouth,Away win,Bournemouth,0-1,form and Elo
+34,2027-05-01,Ipswich,Leeds,Away win,Leeds,0-1,form and Elo
+34,2027-05-01,Liverpool,Chelsea,Home win,Liverpool,1-0,form and Elo
+34,2027-05-01,Man City,Brentford,Home win,Man City,2-0,form and Elo
+34,2027-05-01,Sunderland,Newcastle,Home win,Sunderland,1-0,form and Elo
+35,2027-05-08,Bournemouth,Man United,Away win,Man United,1-2,form and Elo
+35,2027-05-08,Brentford,Aston Villa,Home win,Brentford,1-0,form and Elo
+35,2027-05-08,Brighton,Sunderland,Home win,Brighton,1-0,form and Elo
+35,2027-05-08,Everton,Hull,Home win,Everton,1-0,form and Elo
+35,2027-05-08,Fulham,Ipswich,Home win,Fulham,1-0,form and Elo
+35,2027-05-08,Leeds,Arsenal,Away win,Arsenal,0-1,form and Elo
+35,2027-05-08,Man City,Liverpool,Home win,Man City,2-1,form and Elo
+35,2027-05-08,Newcastle,Coventry,Home win,Newcastle,1-0,form and Elo
+35,2027-05-08,Nott'm Forest,Crystal Palace,Home win,Nott'm Forest,1-0,form and Elo
+35,2027-05-08,Tottenham,Chelsea,Away win,Chelsea,1-2,form and Elo
+36,2027-05-15,Arsenal,Nott'm Forest,Home win,Arsenal,2-0,form and Elo
+36,2027-05-15,Aston Villa,Newcastle,Home win,Aston Villa,1-0,form and Elo
+36,2027-05-15,Chelsea,Everton,Home win,Chelsea,2-1,form and Elo
+36,2027-05-15,Coventry,Tottenham,Away win,Tottenham,0-1,form and Elo
+36,2027-05-15,Crystal Palace,Brighton,Away win,Brighton,1-2,form and Elo
+36,2027-05-15,Hull,Fulham,Away win,Fulham,0-1,form and Elo
+36,2027-05-15,Ipswich,Man City,Away win,Man City,0-2,form and Elo
+36,2027-05-15,Liverpool,Brentford,Home win,Liverpool,1-0,form and Elo
+36,2027-05-15,Man United,Leeds,Home win,Man United,2-1,form and Elo
+36,2027-05-15,Sunderland,Bournemouth,Away win,Bournemouth,0-1,form and Elo
+37,2027-05-23,Bournemouth,Chelsea,Home win,Bournemouth,2-1,form and Elo
+37,2027-05-23,Brentford,Hull,Home win,Brentford,1-0,form and Elo
+37,2027-05-23,Brighton,Liverpool,Home win,Brighton,2-1,form and Elo
+37,2027-05-23,Everton,Arsenal,Away win,Arsenal,0-1,form and Elo
+37,2027-05-23,Fulham,Coventry,Home win,Fulham,1-0,form and Elo
+37,2027-05-23,Leeds,Sunderland,Home win,Leeds,1-0,form and Elo
+37,2027-05-23,Man City,Aston Villa,Home win,Man City,2-0,form and Elo
+37,2027-05-23,Newcastle,Crystal Palace,Home win,Newcastle,1-0,form and Elo
+37,2027-05-23,Nott'm Forest,Ipswich,Home win,Nott'm Forest,1-0,form and Elo
+37,2027-05-23,Tottenham,Man United,Away win,Man United,1-2,form and Elo
+38,2027-05-30,Arsenal,Brighton,Home win,Arsenal,2-1,form and Elo
+38,2027-05-30,Aston Villa,Tottenham,Home win,Aston Villa,1-0,form and Elo
+38,2027-05-30,Chelsea,Brentford,Home win,Chelsea,2-1,form and Elo
+38,2027-05-30,Coventry,Nott'm Forest,Away win,Nott'm Forest,0-1,form and Elo
+38,2027-05-30,Crystal Palace,Leeds,Away win,Leeds,0-1,form and Elo
+38,2027-05-30,Hull,Newcastle,Away win,Newcastle,0-1,form and Elo
+38,2027-05-30,Ipswich,Everton,Away win,Everton,0-1,form and Elo
+38,2027-05-30,Liverpool,Bournemouth,Home win,Liverpool,1-0,form and Elo
+38,2027-05-30,Man United,Fulham,Home win,Man United,2-1,form and Elo
+38,2027-05-30,Sunderland,Man City,Away win,Man City,0-1,form and Elo

@@ -97,51 +97,39 @@ p { margin: 0 0 12px; }
 }
 
 /* Fixture cards */
-.day { font-size: 1rem; color: var(--text-2); margin: 28px 0 10px; font-weight: 600; }
-.fixtures { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
-.card {
-  background: var(--surface); border: 1px solid var(--line);
-  border-radius: 10px; padding: 16px; min-width: 0;
+.controls label { font-weight: 600; }
+.summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 16px 0 8px; }
+.gw { margin: 28px 0 10px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; }
+.gw h2 { margin: 0; font-size: 1.15rem; }
+.fixtures { display: grid; gap: 8px; }
+.fx {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 12px 14px; display: grid; grid-template-columns: 9.5em 1fr 4.5em 1fr 9.5em;
+  gap: 8px 12px; align-items: center;
 }
-.teams {
-  display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px;
-  align-items: baseline; margin-bottom: 14px;
+.fx .when { font-size: 0.85rem; color: var(--text-2); }
+.fx .team { font-weight: 600; font-size: 1.02rem; color: var(--text); overflow-wrap: anywhere; }
+.fx .team.home { text-align: right; }
+.fx .team.pick { font-weight: 800; }
+.fx .team.pick::after { content: " \2713"; color: var(--muted); font-weight: 400; }
+.fx .score {
+  text-align: center; font-size: 1.25rem; font-weight: 800; font-variant-numeric: tabular-nums;
+  background: var(--surface-2); border-radius: 8px; padding: 2px 0; color: var(--text);
 }
-.team { font-weight: 700; font-size: 1.1rem; color: var(--text); overflow-wrap: anywhere; }
-.team.away { text-align: right; }
-.team .side { display: block; font-weight: 400; font-size: 0.75rem; color: var(--muted); }
-.vs { color: var(--muted); font-size: 0.85rem; }
-
-.prob { margin-bottom: 10px; }
-.prob-head {
-  display: flex; justify-content: space-between; align-items: baseline;
-  font-size: 0.8rem; color: var(--text-2); margin-bottom: 4px;
+.fx .verdict { justify-self: end; text-align: right; }
+.pill {
+  display: inline-block; font-size: 0.78rem; font-weight: 700; padding: 2px 9px; border-radius: 12px;
+  border: 2px solid var(--axis); color: var(--text); white-space: nowrap;
 }
-.prob-nums {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  font-variant-numeric: tabular-nums; margin-bottom: 4px; color: var(--text);
+.pill.h { border-color: var(--home); }
+.pill.a { border-color: var(--away); }
+.pill.d { border-color: var(--draw); }
+.basis { display: block; font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+@media (max-width: 720px) {
+  .fx { grid-template-columns: 1fr 4em 1fr; }
+  .fx .when { grid-column: 1 / -1; }
+  .fx .verdict { grid-column: 1 / -1; justify-self: start; text-align: left; }
 }
-.prob-nums span:nth-child(2) { text-align: center; }
-.prob-nums span:nth-child(3) { text-align: right; }
-.prob-nums b { font-size: 1.05rem; }
-.prob-nums small { color: var(--muted); font-size: 0.75rem; margin-right: 4px; }
-.prob.market .prob-nums b { font-size: 0.9rem; font-weight: 500; color: var(--text-2); }
-.bar { display: flex; gap: 2px; height: 14px; }
-.prob.market .bar { height: 6px; }
-.bar i { display: block; min-width: 2px; border-radius: 3px; }
-.bar .h { background: var(--home); }
-.bar .d { background: var(--draw); }
-.bar .a { background: var(--away); }
-.gap { font-size: 0.85rem; color: var(--text-2); margin: 0 0 12px; }
-.gap strong { color: var(--text); }
-
-.stats {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 8px;
-  border-top: 1px solid var(--line); padding-top: 12px; margin: 0;
-}
-.stats div { min-width: 0; }
-.stats dt { font-size: 0.72rem; color: var(--muted); }
-.stats dd { margin: 0; white-space: nowrap; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--text); }
 
 .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 0.85rem; color: var(--text-2); margin: 12px 0; }
 .legend span { display: inline-flex; align-items: center; gap: 6px; }
@@ -201,3 +189,4 @@ tr.benchmark td:first-child { box-shadow: inset 3px 0 0 var(--bench-line); }
   .fixtures { grid-template-columns: 1fr; }
   h1 { font-size: 1.4rem; }
 }
+.summary .tile .value { font-size: 1.5rem; }

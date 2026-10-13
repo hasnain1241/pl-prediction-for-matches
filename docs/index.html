@@ -4,27 +4,38 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Premier League match predictions</title>
-  <meta name="description" content="Model probabilities for the next Premier League gameweek, shown next to the bookmaker's.">
+  <meta name="description" content="Predicted results and scores for every remaining Premier League match this season.">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="site-header" id="site-header"></header>
   <main class="wrap">
-    <h1>Next gameweek predictions</h1>
-    <p class="lede">Home win, draw and away win probabilities for each fixture, with the bookmaker's
-      implied probabilities underneath so you can see where the two disagree.</p>
+    <h1>Predicted results for the rest of the season</h1>
+    <p class="lede">The model's pick for every remaining Premier League match: who wins, or a draw, and
+      the most likely score. Pick a gameweek or a team below.</p>
     <p class="small" data-trained-through></p>
 
     <div class="notice">
-      <p><strong>No model beat the bookmaker.</strong> These numbers come from a statistics project and
-        are not betting advice. The model uses no injury or lineup data and almost never makes a draw its
-        top pick. <a href="about.html">Read the limitations</a>.</p>
+      <p><strong>No model beat the bookmaker.</strong> This is a statistics project, not betting advice.
+        Predictions use no injury or lineup data. Every match is predicted from each club's form as of the
+        latest result, so the further ahead a match is, the rougher the guide.
+        <a href="about.html">Read the limitations</a>.</p>
+    </div>
+
+    <div class="summary" id="summary"></div>
+
+    <div class="controls">
+      <label for="gw">Gameweek</label>
+      <select id="gw"></select>
+      <label for="team">Team</label>
+      <select id="team"></select>
     </div>
 
     <div class="legend" aria-hidden="true">
       <span><i class="swatch" style="background:var(--home)"></i>Home win</span>
       <span><i class="swatch" style="background:var(--draw)"></i>Draw</span>
       <span><i class="swatch" style="background:var(--away)"></i>Away win</span>
+      <span>&#10003; marks the predicted winner</span>
     </div>
 
     <div id="fixtures"></div>
